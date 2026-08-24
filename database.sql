@@ -94,3 +94,16 @@ FROM invoices i
 JOIN patients p ON p.id = i.patient_id
 WHERE i.paid = FALSE
 ORDER BY i.invoice_date;
+
+-- Table: doctors
+CREATE TABLE IF NOT EXISTS doctors (
+    id CHAR(36) NOT NULL PRIMARY KEY DEFAULT (UUID()),
+    name VARCHAR(150) NOT NULL,
+    specialization VARCHAR(100) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX idx_doctors_name (name),
+    INDEX idx_doctors_specialization (specialization)
+) ENGINE=InnoDB;
