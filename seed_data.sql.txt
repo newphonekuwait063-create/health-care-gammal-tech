@@ -1,0 +1,227 @@
+e.com',     '27803220123457', 'Cairo', 'Egypt'),
+(4,  'Sara',    'Ibrahim', '1995-07-30', 'female', '01222233344', 'sara.ibrahim@example.com', '29507300123458', 'Cairo', 'Egypt'),
+(5,  'Youssef', 'Adel',    '1982-12-11', 'male',   '01033344455', 'youssef.adel@example.com', '28212110123459', 'Cairo', 'Egypt'),
+(6,  'Nour',    'El Din',  '1998-01-19', 'male',   '01155566677', 'nour.eldin@example.com',   '29801190123460', 'Giza',  'Egypt'),
+(7,  'Huda',    'Samir',   '1970-08-25', 'female', '01277788899', 'huda.samir@example.com',   '27008250123461', 'Giza',  'Egypt'),
+(8,  'Omar',    'Tarek',   '1965-04-07', 'male',   '01066677788', 'omar.tarek@example.com',   '26504070123462', 'Giza',  'Egypt'),
+(9,  'Laila',   'Mostafa', '2001-09-13', 'female', '01188899900', 'laila.mostafa@example.com','20109130123463', 'Cairo', 'Egypt'),
+(10, 'Salma',   'Nabil',   '1992-02-18', 'female', '01211122233', 'salma.nabil@example.com',  '29202180123464', 'Giza',  'Egypt'),
+(11, 'Hassan',  'Fathy',   '1975-06-09', 'male',   '01044455566', 'hassan.fathy@example.com', '27506090123465', 'Cairo', 'Egypt'),
+(12, 'Dina',    'Salah',   '1988-10-27', 'female', '01133344455', 'dina.salah@example.com',   '28810270123466', 'Cairo', 'Egypt');
+
+-- ================= PROVIDERS =================
+INSERT INTO providers (id, first_name, last_name, specialty, license_number, phone, email) VALUES
+(1, 'Amr',    'Hassan',  'Cardiology',     'LIC-1001', '01010001001', 'amr.hassan@example.com'),
+(2, 'Rania',  'Mostafa', 'Endocrinology',  'LIC-1002', '01010001002', 'rania.mostafa@example.com'),
+(3, 'Tamer',  'Khaled',  'General Practice','LIC-1003', '01010001003', 'tamer.khaled@example.com'),
+(4, 'Heba',   'Adel',    'Radiology',      'LIC-1004', '01010001004', 'heba.adel@example.com'),
+(5, 'Mahmoud','Fouad',   'Neurology',      'LIC-1005', '01010001005', 'mahmoud.fouad@example.com'),
+(6, 'Nesma',  'Youssef', 'Pediatrics',     'LIC-1006', '01010001006', 'nesma.youssef@example.com');
+
+-- ================= FACILITIES =================
+INSERT INTO facilities (id, name, facility_type, city, country, phone) VALUES
+(1, 'Cairo Central Hospital', 'hospital',      'Cairo', 'Egypt', '02-01234567'),
+(2, 'Giza Medical Center',    'clinic',        'Giza',  'Egypt', '02-07654321'),
+(3, 'Nile Lab',               'lab',           'Cairo', 'Egypt', '02-09876543'),
+(4, 'City Pharmacy',          'pharmacy',      'Cairo', 'Egypt', '02-05556677'),
+(5, 'Delta Imaging Center',   'imaging_center','Giza',  'Egypt', '02-04443322');
+
+-- ================= PROVIDER FACILITIES =================
+INSERT INTO provider_facilities (provider_id, facility_id, started_at) VALUES
+(1, 1, '2020-01-01'),
+(2, 1, '2020-06-01'),
+(3, 2, '2019-03-15'),
+(4, 5, '2021-02-01'),
+(5, 1, '2018-09-10'),
+(6, 2, '2022-01-05');
+
+-- ================= APPOINTMENTS =================
+INSERT INTO appointments (id, patient_id, provider_id, facility_id, appointment_date, start_time, end_time, reason, status) VALUES
+(1,  1, 1, 1, '2025-01-10', '09:00', '09:30', 'Chest pain follow-up',          'completed'),
+(2,  2, 2, 1, '2025-01-12', '10:00', '10:30', 'Diabetes checkup',              'completed'),
+(3,  3, 3, 2, '2025-01-15', '11:00', '11:30', 'General examination',            'completed'),
+(4,  4, 1, 1, '2025-02-02', '12:00', '12:30', 'Heart palpitations',             'no_show'),
+(5,  5, 5, 1, '2025-02-05', '13:00', '13:30', 'Chronic headache',               'completed'),
+(6,  6, 6, 2, '2025-02-10', '14:00', '14:30', 'Child vaccination',              'completed'),
+(7,  7, 1, 1, '2025-02-14', '09:30', '10:00', 'High blood pressure',            'completed'),
+(8,  8, 2, 1, '2025-02-18', '10:30', '11:00', 'Thyroid test review',            'completed'),
+(9,  9, 3, 2, '2025-03-01', '11:30', '12:00', 'Flu symptoms',                   'cancelled'),
+(10, 10, 2, 1, '2025-03-05', '12:30', '13:00', 'Diabetes follow-up',            'completed'),
+(11, 11, 5, 1, '2025-03-10', '13:30', '14:00', 'Nerve pain',                    'completed'),
+(12, 12, 3, 2, '2025-03-15', '14:30', '15:00', 'Routine checkup',               'completed'),
+(13, 1,  1, 1, '2025-04-02', '09:00', '09:30', 'Blood pressure check',          'completed'),
+(14, 2,  2, 1, '2025-04-08', '10:00', '10:30', 'HbA1c review',                  'completed'),
+(15, 4,  1, 1, '2025-04-15', '11:00', '11:30', 'ECG review',                    'scheduled'),
+(16, 6,  6, 2, '2025-05-01', '12:00', '12:30', 'Growth check',                  'completed'),
+(17, 7,  1, 1, '2025-05-06', '13:00', '13:30', 'Medication adjustment',         'completed'),
+(18, 9,  3, 2, '2025-05-12', '14:00', '14:30', 'Cough and fever',               'completed'),
+(19, 10, 2, 1, '2025-05-20', '09:30', '10:00', 'Insulin review',                'confirmed'),
+(20, 12, 3, 2, '2025-06-01', '10:30', '11:00', 'Annual physical',               'completed');
+
+-- ================= ENCOUNTERS =================
+INSERT INTO encounters (id, patient_id, provider_id, facility_id, appointment_id, encounter_date, encounter_type, chief_complaint) VALUES
+(1,  1, 1, 1, 1,  '2025-01-10', 'visit',       'Chest pain during exercise'),
+(2,  2, 2, 1, 2,  '2025-01-12', 'visit',       'Frequent urination and fatigue'),
+(3,  3, 3, 2, 3,  '2025-01-15', 'visit',       'Routine checkup'),
+(4,  5, 5, 1, 5,  '2025-02-05', 'visit',       'Persistent headache'),
+(5,  6, 6, 2, 6,  '2025-02-10', 'visit',       'Childhood vaccination visit'),
+(6,  7, 1, 1, 7,  '2025-02-14', 'visit',       'High blood pressure readings'),
+(7,  8, 2, 1, 8,  '2025-02-18', 'visit',       'Fatigue and weight change'),
+(8,  10, 2, 1, 10, '2025-03-05', 'follow_up',  'Diabetes glucose review'),
+(9,  11, 5, 1, 11, '2025-03-10', 'visit',      'Nerve pain in legs'),
+(10, 12, 3, 2, 12, '2025-03-15', 'visit',      'General weakness'),
+(11, 1,  1, 1, 13, '2025-04-02', 'follow_up',  'Blood pressure follow-up'),
+(12, 2,  2, 1, 14, '2025-04-08', 'follow_up',  'Diabetes control review'),
+(13, 6,  6, 2, 16, '2025-05-01', 'visit',      'Pediatric growth assessment'),
+(14, 7,  1, 1, 17, '2025-05-06', 'visit',      'Dizziness after medication'),
+(15, 9,  3, 2, 18, '2025-05-12', 'visit',      'Cough and fever'),
+(16, 3,  3, 2, NULL,'2025-06-05', 'telemedicine','Follow-up lab results'),
+(17, 4,  1, 1, NULL,'2025-06-10', 'emergency',  'Sudden chest tightness'),
+(18, 8,  2, 1, NULL,'2025-06-15', 'follow_up',  'Thyroid treatment check'),
+(19, 10, 2, 1, NULL,'2025-06-18', 'follow_up',  'Insulin dose review'),
+(20, 12, 3, 2, 20, '2025-06-01', 'visit',       'Annual physical exam');
+
+-- ================= DIAGNOSES =================
+INSERT INTO diagnoses (encounter_id, icd10_code, description, diagnosis_date, primary_diagnosis) VALUES
+(1,  'I20.9',  'Angina pectoris',            '2025-01-10', 1),
+(2,  'E11.9',  'Type 2 diabetes mellitus',   '2025-01-12', 1),
+(3,  'Z00.00', 'General adult exam',         '2025-01-15', 1),
+(4,  'G44.1',  'Vascular headache',          '2025-02-05', 1),
+(5,  'Z23',    'Encounter for vaccination',  '2025-02-10', 1),
+(6,  'I10',    'Essential hypertension',     '2025-02-14', 1),
+(7,  'E03.9',  'Hypothyroidism',             '2025-02-18', 1),
+(8,  'E11.65', 'Diabetes with hyperglycemia','2025-03-05', 1),
+(9,  'M79.2',  'Neuralgia',                  '2025-03-10', 1),
+(10, 'D50.9',  'Iron deficiency anemia',     '2025-03-15', 1),
+(11, 'I10',    'Essential hypertension',     '2025-04-02', 1),
+(12, 'E11.9',  'Type 2 diabetes mellitus',   '2025-04-08', 1),
+(13, 'Z00.1',  'Well child exam',            '2025-05-01', 1),
+(14, 'R42',    'Dizziness',                  '2025-05-06', 1),
+(15, 'J20.9',  'Acute bronchitis',           '2025-05-12', 1),
+(16, 'E78.5',  'Hyperlipidemia',             '2025-06-05', 1),
+(17, 'I21.4',  'Non-ST elevation heart attack','2025-06-10',1),
+(18, 'E03.9',  'Hypothyroidism',             '2025-06-15', 1),
+(19, 'E11.9',  'Type 2 diabetes mellitus',   '2025-06-18', 1),
+(20, 'Z00.00', 'General adult exam',         '2025-06-01', 1);
+
+-- ================= PROCEDURES =================
+INSERT INTO procedures (encounter_id, cpt_code, description, procedure_date, performing_provider_id, facility_id) VALUES
+(1,  '93000', 'Electrocardiogram (ECG)',     '2025-01-10', 1, 1),
+(6,  '93000', 'Electrocardiogram (ECG)',     '2025-02-14', 1, 1),
+(9,  '64450', 'Nerve block injection',       '2025-03-10', 5, 1),
+(11, '93000', 'Electrocardiogram (ECG)',     '2025-04-02', 1, 1),
+(13, '99212', 'Pediatric office visit',      '2025-05-01', 6, 2),
+(15, '71046', 'Chest X-ray',                 '2025-05-12', 4, 5),
+(17, '93000', 'Electrocardiogram (ECG)',     '2025-06-10', 1, 1),
+(20, '80061', 'Lipid panel',                 '2025-06-01', 3, 2);
+
+-- ================= MEDICATIONS =================
+INSERT INTO medications (id, name, generic_name, form, strength, unit, route) VALUES
+(1,  'Aspirin Protect',   'Acetylsalicylic acid', 'tablet',   '100', 'mg', 'oral'),
+(2,  'Glucophage',        'Metformin',            'tablet',   '500', 'mg', 'oral'),
+(3,  'Concor',            'Bisoprolol',           'tablet',   '5',   'mg', 'oral'),
+(4,  'Lipitor',           'Atorvastatin',         'tablet',   '20',  'mg', 'oral'),
+(5,  'Eltroxin',          'Levothyroxine',        'tablet',   '50',  'mcg','oral'),
+(6,  'Panadol',           'Paracetamol',          'tablet',   '500', 'mg', 'oral'),
+(7,  'Amoxicillin',       'Amoxicillin',          'capsule',  '500', 'mg', 'oral'),
+(8,  'Insulin Lantus',    'Insulin glargine',     'injection','100', 'IU/ml','subcutaneous'),
+(9,  'Ventolin',          'Salbutamol',           'inhaler',  '100', 'mcg/dose','inhalation'),
+(10, 'Omepral',           'Omeprazole',           'capsule',  '20',  'mg', 'oral');
+
+-- ================= PRESCRIPTIONS =================
+INSERT INTO prescriptions (encounter_id, medication_id, provider_id, dosage, frequency, duration_days, quantity, refills) VALUES
+(1,  1, 1, '100 mg', 'once daily',       30, 30, 2),
+(1,  3, 1, '5 mg',   'once daily',       30, 30, 2),
+(2,  2, 2, '500 mg', 'twice daily',      30, 60, 2),
+(6,  1, 1, '100 mg', 'once daily',       30, 30, 1),
+(6,  3, 1, '5 mg',   'once daily',       30, 30, 1),
+(7,  5, 2, '50 mcg', 'once daily',       90, 90, 3),
+(8,  2, 2, '1000 mg','twice daily',      30, 60, 2),
+(8,  8, 2, '10 units','once at night',   30, 30, 2),
+(4,  6, 5, '500 mg', 'as needed',        10, 10, 0),
+(9,  6, 5, '500 mg', 'three times daily',7,  21, 0),
+(11, 1, 1, '100 mg', 'once daily',       30, 30, 1),
+(12, 2, 2, '1000 mg','twice daily',      30, 60, 2),
+(12, 4, 2, '20 mg',  'once daily',       30, 30, 3),
+(13, 6, 6, '250 mg', 'as needed',        5,  5,  0),
+(14, 6, 1, '500 mg', 'as needed',        5,  5,  0),
+(15, 7, 3, '500 mg', 'three times daily',7,  21, 0),
+(15, 6, 3, '500 mg', 'as needed',        7,  7,  0),
+(16, 4, 3, '20 mg',  'once daily',       30, 30, 3),
+(17, 1, 1, '100 mg', 'once daily',       30, 30, 1),
+(17, 4, 1, '40 mg',  'once daily',       30, 30, 2),
+(18, 5, 2, '75 mcg', 'once daily',       30, 30, 3),
+(19, 8, 2, '12 units','once at night',   30, 30, 2),
+(20, 6, 3, '500 mg', 'as needed',        7,  7,  0);
+
+-- ================= LAB TESTS =================
+INSERT INTO lab_tests (id, test_code, name, category, unit, reference_low, reference_high) VALUES
+(1,  'GLU',    'Fasting Blood Glucose', 'Chemistry', 'mg/dL', '70', '100'),
+(2,  'HBA1C',  'HbA1c',                 'Chemistry', '%',     '4',  '5.6'),
+(3,  'CHOL',   'Total Cholesterol',     'Lipid',     'mg/dL', '120','200'),
+(4,  'LDL',    'LDL Cholesterol',       'Lipid',     'mg/dL', '50', '130'),
+(5,  'HDL',    'HDL Cholesterol',       'Lipid',     'mg/dL', '40', '60'),
+(6,  'TSH',    'Thyroid Stimulating',   'Endocrine', 'mIU/L', '0.5','4.5'),
+(7,  'CBC',    'Complete Blood Count',  'Hematology', 'cells/uL', '4','11'),
+(8,  'CRP',    'C-Reactive Protein',    'Inflammation','mg/L', '0', '5');
+
+-- ================= LAB ORDERS =================
+INSERT INTO lab_orders (id, patient_id, encounter_id, ordering_provider_id, performing_facility_id, order_date, status) VALUES
+(1,  1, 1,  1, 3, '2025-01-10', 'completed'),
+(2,  2, 2,  2, 3, '2025-01-12', 'completed'),
+(3,  5, 4,  5, 3, '2025-02-05', 'completed'),
+(4,  8, 7,  2, 3, '2025-02-18', 'completed'),
+(5,  10, 8, 2, 3, '2025-03-05', 'completed'),
+(6,  11, 9, 5, 3, '2025-03-10', 'completed'),
+(7,  3, 16, 3, 3, '2025-06-05', 'completed'),
+(8,  4, 17, 1, 3, '2025-06-10', 'completed'),
+(9,  12, 20, 3, 3, '2025-06-01', 'ordered'),
+(10, 7, 14, 1, 3, '2025-05-06', 'completed');
+
+-- ================= LAB RESULTS =================
+INSERT INTO lab_results (lab_order_id, lab_test_id, result_value, result_unit, result_date, is_abnormal) VALUES
+(1,  1, '145',  'mg/dL', '2025-01-10', 1),
+(1,  8, '2',    'mg/L',  '2025-01-10', 0),
+(2,  1, '180',  'mg/dL', '2025-01-12', 1),
+(2,  2, '9.1',  '%',     '2025-01-12', 1),
+(3,  1, '110',  'mg/dL', '2025-02-05', 0),
+(3,  8, '14',   'mg/L',  '2025-02-05', 1),
+(4,  6, '12.4', 'mIU/L', '2025-02-18', 1),
+(5,  1, '204',  'mg/dL', '2025-03-05', 1),
+(5,  2, '8.8',  '%',     '2025-03-05', 1),
+(6,  8, '9',    'mg/L',  '2025-03-10', 1),
+(7,  3, '240',  'mg/dL', '2025-06-05', 1),
+(7,  4, '160',  'mg/dL', '2025-06-05', 1),
+(8,  1, '92',   'mg/dL', '2025-06-10', 0),
+(8,  7, '5.2',  'cells/uL','2025-06-10',1),
+(10, 1, '132',  'mg/dL', '2025-05-06', 1),
+(10, 3, '185',  'mg/dL', '2025-05-06', 0),
+(10, 5, '42',   'mg/dL', '2025-05-06', 0);
+
+-- ================= INSURANCE POLICIES =================
+INSERT INTO insurance_policies (id, patient_id, insurance_company, policy_number, group_number, coverage_start, coverage_end, plan_type, status) VALUES
+(1, 1,  'Misr Insurance',    'MI-1001', 'G-101', '2024-01-01', '2026-12-31', 'Gold',   'active'),
+(2, 2,  'Delta Insurance',   'DI-1002', 'G-102', '2024-03-01', '2026-02-28', 'Silver', 'active'),
+(3, 3,  'Misr Insurance',    'MI-1003', 'G-101', '2024-06-01', '2026-05-31', 'Gold',   'active'),
+(4, 4,  'GIG Egypt',         'GI-1004', 'G-103', '2023-01-01', '2025-06-30', 'Platinum','expired'),
+(5, 5,  'Delta Insurance',   'DI-1005', 'G-102', '2024-02-01', '2026-01-31', 'Silver', 'active'),
+(6, 7,  'Misr Insurance',    'MI-1006', 'G-101', '2024-01-01', '2026-12-31', 'Gold',   'active'),
+(7, 8,  'GIG Egypt',         'GI-1007', 'G-103', '2023-01-01', '2025-06-30', 'Platinum','expired'),
+(8, 10, 'Delta Insurance',   'DI-1008', 'G-102', '2024-04-01', '2026-03-31', 'Silver', 'active'),
+(9, 11, 'Misr Insurance',    'MI-1009', 'G-101', '2024-05-01', '2026-04-30', 'Gold',   'active');
+
+-- ================= CLAIMS =================
+INSERT INTO claims (id, patient_id, encounter_id, insurance_policy_id, claim_number, claim_date, total_amount, approved_amount, status) VALUES
+(1,  1, 1,  1, 'CLM-1001', '2025-01-11', 800,  640,  'approved'),
+(2,  2, 2,  2, 'CLM-1002', '2025-01-13', 450,  360,  'approved'),
+(3,  3, 3,  3, 'CLM-1003', '2025-01-16', 300,  240,  'approved'),
+(4,  4, 17, 4, 'CLM-1004', '2025-06-11', 2500, 0,    'denied'),
+(5,  5, 4,  5, 'CLM-1005', '2025-02-06', 700,  560,  'approved'),
+(6,  7, 6,  6, 'CLM-1006', '2025-02-15', 600,  480,  'paid'),
+(7,  8, 7,  7, 'CLM-1007', '2025-02-19', 500,  0,    'submitted'),
+(8,  10, 8, 8, 'CLM-1008', '2025-03-06', 900,  720,  'approved'),
+(9,  11, 9, 9, 'CLM-1009', '2025-03-11', 650,  520,  'approved'),
+(10, 12, 20, NULL,'CLM-1010', '2025-06-02', 220,  0,    'draft');
+
+
+--PRAGMA foreign_keys = ON;
