@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحليل بيانات عيادة أسنان - لوحة القرار</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 20px;
+      color: #2d3436;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #0a3d62;
+      font-size: 2.2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #636e72;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #636e72;
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #0a3d62;
+    }
+
+    .stat-unit {
+      font-size: 0.9rem;
+      color: #636e72;
+    }
+
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+      color: #0a3d62;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #dfe6e9;
+      padding-bottom: 8px;
+    }
+
+    .price-input-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+
+    .price-input-group label {
+      font-weight: bold;
+    }
+
+    .price-input-group input {
+      width: 120px;
+      padding: 8px;
+      border: 2px solid #0a3d62;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .loss-box {
+      background: #ffeceb;
+      border: 2px solid #e17055;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #c0392b;
+      text-align: center;
+    }
+
+    .bar-chart {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      height: 200px;
+      margin: 20px 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    .bar-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    .bar {
+      width: 60px;
+      background: #0984e3;
+      border-radius: 6px 6px 0 0;
+      margin-bottom: 5px;
+      transition: height 0.5s;
+    }
+
+    .bar-label {
+      font-size: 0.9rem;
+      color: #2d3436;
+    }
+
+    .source-highlight {
+      background: #dfe6e9;
+      border-radius: 8px;
+      padding: 10px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .creative-box {
+      background: #eef2f7;
+      border-right: 5px solid #0a3d62;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 15px 0;
+    }
+
+    .roi-calc {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .roi-item {
+      text-align: center;
+      min-width: 100px;
+    }
+
+    .roi-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0a3d62;
+    }
+
+    .roi-label {
+      font-size: 0.85rem;
+      color: #636e72;
+    }
+
+    .linkedin-box {
+      background: #f8f9fa;
+      border: 1px solid #ced6e0;
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 10px;
+      border: 1px solid #ced6e0;
+      border-radius: 6px;
+      resize: vertical;
+      margin-bottom: 10px;
+    }
+
+    .copy-btn {
+      background: #0a3d62;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #083a54;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #636e72;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🦷 تحليل بيانات عيادة أسنان</h1>
+    <p class="subtitle">لوحة قرار مبنية على بيانات شهر واحد</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">إجمالي المواعيد</div>
+        <div class="stat-value">24</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">الحضور</div>
+        <div class="stat-value">18</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">الغياب</div>
+        <div class="stat-value">6</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">نسبة الغياب</div>
+        <div class="stat-value">25%</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>💰 الخسارة المالية</h2>
+      <div class="price-input-group">
+        <label for="price">سعر الكشف (جنيه):</label>
+        <input type="number" id="price" value="200" min="0">
+      </div>
+      <div class="loss-box">
+        الخسارة الشهرية: <span id="monthlyLoss">1200</span> جنيه
+      </div>
+      <p style="text-align:center; font-size:1.2rem;">
+        الخسارة السنوية المتوقعة: <strong><span id="annualLoss">14400</span> جنيه</strong>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>📊 مصادر المرضى</h2>
+      <div class="bar-chart" id="barChart">
+        <div class="bar-wrapper">
+          <div class="bar" style="height: 80%;" data-source="فيسبوك"></div>
+          <div class="bar-label">فيسبوك (10)</div>
+        </div>
+        <div class="bar-wrapper">
+          <div class="bar" style="height: 40%;" data-source="إحالات"></div>
+          <div class="bar-label">إحالات (5)</div>
+        </div>
+        <div class="bar-wrapper">
+          <div class="bar" style="height: 32%;" data-source="جوجل"></div>
+          <div class="bar-label">جوجل (4)</div>
+        </div>
+        <div class="bar-wrapper">
+          <div class="bar" style="height: 24%;" data-source="أخرى"></div>
+          <div class="bar-label">أخرى (5)</div>
+        </div>
+      </div>
+      <div class="source-highlight">
+        🏆 أفضل مصدر للمرضى: <strong>فيسبوك</strong> (جاب 10 من 24 مريض)
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>✨ الإضافة الإبداعية: حل التذكير الذكي</h2>
+      <div class="creative-box">
+        <p><strong>الفكرة:</strong> إرسال تذكير واتساب قبل كل موعد بـ 24 ساعة، بمتوسط تكلفة 2 جنيه للرسالة.</p>
+        <p><strong>عدد المواعيد الشهرية:</strong> 24 موعد</p>
+        <p><strong>تكلفة التذكير الشهرية:</strong> 24 × 2 = <strong>48 جنيه</strong></p>
+        <p><strong>الافتراض:</strong> لو التذكير قلل الغياب بنسبة 50% فقط (يعني 3 مرضى بدل 6)، هيتوفر:</p>
+        <p style="font-size:1.3rem; text-align:center;"><strong>3 × 200 = 600 جنيه شهرياً</strong></p>
+      </div>
+      <div class="roi-calc">
+        <div class="roi-item">
+          <div class="roi-value">48 جنيه</div>
+          <div class="roi-label">تكلفة الحل</div>
+        </div>
+        <div class="roi-item">
+          <div class="roi-value">600 جنيه</div>
+          <div class="roi-label">وفورات متوقعة</div>
+        </div>
+        <div class="roi-item">
+          <div class="roi-value">552 جنيه</div>
+          <div class="roi-label">صافي العائد</div>
+        </div>
+        <div class="roi-item">
+          <div class="roi-value">1150%</div>
+          <div class="roi-label">عائد على التكلفة</div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:1.1rem;">
+        كل جنيه بيتدفع في التذكير بيرجع <strong>12.5 جنيه</strong> تقريباً!
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>📝 منشور LinkedIn جاهز</h2>
+      <div class="linkedin-box">
+        <textarea id="linkedinPost">عندي عيادة أسنان بتخسر 1200 جنيه شهرياً من غير ما تاخد بالها!
+
+حللت بيانات 24 مريض في شهر واحد:
+- 25% غياب = 6 كراسي فاضية
+- الخسارة = 6 × 200 = 1200 جنيه شهرياً
+- يعني 14,400 جنيه في السنة!
+
+أفضل مصدر للمرضى كان فيسبوك.
+
+الحل اللي اقترحته:
+تذكير واتساب قبل الموعد بيوم + متابعة اللي بيغيبوا أكتر من مرة.
+
+التكلفة 48 جنيه بس، والمتوقع يرجّع 600 جنيه على الأقل.
+
+البيانات مش رفاهية — دي فلوس بتضيع كل شهر.
+
+#DataAnalysis #HealthcareData #BusinessInsights #EgyptianAnalyst</textarea>
+        <button class="copy-btn" onclick="copyPost()">📋 نسخ المنشور</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>تحليل بيانات حقيقي – إعداد: أحمد محمد</p>
+    </footer>
+  </div>
+
+  <script>
+    const priceInput = document.getElementById('price');
+    const monthlyLossSpan = document.getElementById('monthlyLoss');
+    const annualLossSpan = document.getElementById('annualLoss');
+    const missedCount = 6;
+
+    function updateLoss() {
+      const price = parseFloat(priceInput.value) || 0;
+      const monthly = missedCount * price;
+      const annual = monthly * 12;
+      monthlyLossSpan.textContent = monthly.toLocaleString('ar-EG');
+      annualLossSpan.textContent = annual.toLocaleString('ar-EG');
+    }
+
+    priceInput.addEventListener('input', updateLoss);
+
+    function copyPost() {
+      const textarea = document.getElementById('linkedinPost');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      alert('تم نسخ المنشور!');
+    }
+  </script>
+</body>
+</html>
